@@ -4,15 +4,68 @@
         <meta charset="utf-8">
         <meta name="viewport"
           content="width=device-width, initial-scale=1, user-scalable=no">
-        <link rel="stylesheet" href="cours.css">
-        <script src='script.js' async></script>
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+     
     </head>
     
     <body>
-        <h1>Titre principal</h1>
-        <p>Un paragraphe</p>
-        <p id='p1'></p>
-        <p id='p2'></p>
-        <p id='p3'></p>
+        
+
+      
+        <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+            <i class="fa fa-calendar"></i>&nbsp;
+            <span></span> <i class="fa fa-caret-down"></i>
+        </div>
+
+        
+    
+
+
+
+
+        <script type="text/javascript">
+             $(function() {
+            
+                
+                 var start = moment();
+                 var end = moment();
+                 moment.locale('fr');
+            
+                 function cb(start, end) {
+                   
+                     $('#reportrange span').html('Du ' + start.format('D MMMM YYYY') + ' au ' + end.format('D MMMM YYYY'));
+                }
+            
+                $('#reportrange').daterangepicker({
+                    startDate: start,
+                    endDate: end,
+                    "locale": {
+                        "applyLabel": "Appliquer",
+                        "cancelLabel": "Supprimer"
+                    },
+                    ranges: {
+                       'Today': [moment(), moment()],
+                       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                       'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                       'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                       'This Month': [moment().startOf('month'), moment().endOf('month')],
+                       'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+
+                    },
+                    "alwaysShowCalendars": true,
+
+                }, cb);
+            
+                cb(start, end);
+
+            
+            });
+
+    
+            </script>
+
     </body>
 </html>
