@@ -19,7 +19,11 @@
             <i class="fa fa-calendar"></i>&nbsp;
             <span></span> <i class="fa fa-caret-down"></i>
         </div>
+        <input type="text" class="form-control has-feedback-left" name="numberdays" 
+        id="numberdays" >
+<div id="hello">
 
+</div>
         
     
 
@@ -33,10 +37,10 @@
                  var start = moment();
                  var end = moment();
                  moment.locale('fr');
+              
             
                  function cb(start, end) {
-                   
-                     $('#reportrange span').html('Du ' + start.format('D MMMM YYYY') + ' au ' + end.format('D MMMM YYYY'));
+                    $('#reportrange span').html('Du ' + start.format('D MMMM YYYY') + ' au ' + end.format('D MMMM YYYY') );
                 }
             
                 $('#reportrange').daterangepicker({
@@ -44,8 +48,10 @@
                     endDate: end,
                     "locale": {
                         "applyLabel": "Appliquer",
-                        "cancelLabel": "Supprimer"
+                        "cancelLabel": "Supprimer",
                     },
+                    autoUpdateInput:true,
+                    // autoApply:true,
                     ranges: {
                        'Today': [moment(), moment()],
                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -56,12 +62,19 @@
 
                     },
                     "alwaysShowCalendars": true,
+                
 
                 }, cb);
             
                 cb(start, end);
-
-            
+                $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+		$('#numberdays').val(picker.endDate.diff(picker.startDate, "days"));
+	});
+                   
+                   
+               
+                
+	
             });
 
     
