@@ -1,7 +1,37 @@
+$(function() {
+            
+    let start = moment();
+    let end = moment();
+    moment.locale('fr');
+ 
 
-let date1 = Date();
-let date2 = Date.now();
+    function cb(start, end) {
+       $('#reportrange span').html('du ' + start.format('D MMMM YYYY') + ' au ' + end.format('D MMMM YYYY') + ' pendant ');
+   }
 
-document.getElementById('p1').innerHTML = date1;
-document.getElementById('p2').innerHTML = date2;
+   $('#reportrange').daterangepicker({
+       startDate: start,
+       endDate: end,
+       autoApply:true,
+       showDropdowns:true,
+       ranges: {
+          'Aujourd hui': [moment(), moment()],
+          'Hier': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Les 7 derniers jours': [moment().subtract(6, 'days'), moment()],
+          'Les 30 derniers jours': [moment().subtract(29, 'days'), moment()],
+          'Ce mois': [moment().startOf('month'), moment().endOf('month')],
+          'Cette année': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
 
+       },
+       "alwaysShowCalendars": true,
+   
+
+   }, cb);
+
+   cb(start, end);
+
+   $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+      $('#numberdays').val(picker.endDate.diff(picker.startDate, "days"));
+   });
+      
+});

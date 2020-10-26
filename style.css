@@ -1,0 +1,16 @@
+#numberdays{
+    border:none;
+    /* margin-top:-28px; */
+    margin-left:0.3rem;
+    margin-right:0.3rem;
+    width: 1rem;
+}
+#reportrange{
+    display: flex;
+    flex-direction: row;
+    margin-top:2rem;
+    padding-top:2rem;
+}
+span{
+    padding-top:1rem;
+}

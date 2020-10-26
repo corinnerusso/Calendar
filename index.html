@@ -4,79 +4,25 @@
         <meta charset="utf-8">
         <meta name="viewport"
           content="width=device-width, initial-scale=1, user-scalable=no">
-          <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-     
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+            <script src="script.js" async></script>
+            <link rel="stylesheet" href="style.css" />
     </head>
     
     <body>
         
-
-      
         <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
-            <i class="fa fa-calendar"></i>&nbsp;
+            <p>Délivrance</p>  <i class="fa fa-calendar"></i> &nbsp;
             <span></span> <i class="fa fa-caret-down"></i>
+            <input id="numberdays" type="text" name="numberdays"  >
+            <p>jours</p>
         </div>
-        <input type="text" class="form-control has-feedback-left" name="numberdays" 
-        id="numberdays" >
-<div id="hello">
-
-</div>
-        
-    
-
-
-
 
         <script type="text/javascript">
-             $(function() {
-            
-                
-                 var start = moment();
-                 var end = moment();
-                 moment.locale('fr');
-              
-            
-                 function cb(start, end) {
-                    $('#reportrange span').html('Du ' + start.format('D MMMM YYYY') + ' au ' + end.format('D MMMM YYYY') );
-                }
-            
-                $('#reportrange').daterangepicker({
-                    startDate: start,
-                    endDate: end,
-                    "locale": {
-                        "applyLabel": "Appliquer",
-                        "cancelLabel": "Supprimer",
-                    },
-                    autoUpdateInput:true,
-                    // autoApply:true,
-                    ranges: {
-                       'Today': [moment(), moment()],
-                       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                       'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                       'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                       'This Month': [moment().startOf('month'), moment().endOf('month')],
-                       'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
-
-                    },
-                    "alwaysShowCalendars": true,
-                
-
-                }, cb);
-            
-                cb(start, end);
-                $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-		$('#numberdays').val(picker.endDate.diff(picker.startDate, "days"));
-	});
-                   
-                   
-               
-                
-	
-            });
-
+             
     
             </script>
 
